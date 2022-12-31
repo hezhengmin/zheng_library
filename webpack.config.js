@@ -81,6 +81,6 @@ module.exports = {
     extensions: ["*", ".js", ".vue", ".json"],
   },
   devServer: {
-    historyApiFallback: true,
+    open: true,
   },
 };
