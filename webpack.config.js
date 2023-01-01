@@ -77,6 +77,7 @@ module.exports = {
   resolve: {
     alias: {
       vue$: "vue/dist/vue.runtime.esm.js",
+      api$: path.resolve('src/api/api.js'),
     },
     extensions: ["*", ".js", ".vue", ".json"],
   },
