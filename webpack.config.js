@@ -7,10 +7,11 @@ module.exports = {
     main: "./src/main.js",
   },
   output: {
-    filename: "[name].[contenthash:8].js",
-    path: path.resolve(__dirname, "dist"),
-    chunkFilename: "[name].[contenthash:8].js",
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    clean: true,
   },
+  devtool: 'inline-source-map',
   module: {
     rules: [
       {
@@ -82,6 +83,9 @@ module.exports = {
     extensions: ["*", ".js", ".vue", ".json"],
   },
   devServer: {
+    static: {
+      directory: path.join(__dirname, 'dist'),
+    },
     open: true,
   },
 };

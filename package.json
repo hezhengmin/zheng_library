@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "build": "webpack serve --mode production",
-    "start": "webpack serve --mode development"
+    "start": "webpack serve --mode development",
+    "watch": "webpack --watch --mode development"
   },
   "dependencies": {
     "core-js": "^3.6.5",
