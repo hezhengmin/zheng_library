@@ -1,8 +1,5 @@
 ﻿import axios from 'axios';
 
-const domain = 'https://localhost:44323';//WebApi
-const website = 'https://localhost:8080';//前台
-
 const token = `Bearer ${localStorage.getItem("jwtToken")}`;
 
 //帳號登入
@@ -53,7 +50,7 @@ export const apiGetValidateCode = (config) => createAxios().request(config);
 
 const createAxios = () => {
     const newInstance = axios.create({
-        baseURL: `${domain}/api`,
+        baseURL: `${process.env.WEBAPI}/api`,
         headers: {
             Authorization: `Bearer ${localStorage.getItem("jwtToken")}`
         }
@@ -67,7 +64,7 @@ const createAxios = () => {
                 alert("未授權，回登入頁面");
                 localStorage.clear();
 
-                window.location = `${website}/Home/Login`;
+                window.location = `${process.env.WEBSITE}/Home/Login`;
             }
             return Promise.reject(error);
         }

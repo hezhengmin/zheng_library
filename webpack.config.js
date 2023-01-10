@@ -1,6 +1,7 @@
 const { VueLoaderPlugin } = require("vue-loader");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
+const Dotenv = require('dotenv-webpack');//設置全局變量
 
 module.exports = {
   entry: {
@@ -74,6 +75,8 @@ module.exports = {
       template: path.resolve(__dirname, "public", "index.html"),
       favicon: "./public/favicon.ico",
     }),
+    //設置全局變量 https://www.npmjs.com/package/dotenv-webpack 
+    new Dotenv() 
   ],
   resolve: {
     alias: {
