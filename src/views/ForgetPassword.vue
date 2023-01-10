@@ -17,7 +17,7 @@
             <div class="mb-2">
                 <div class="d-flex">
                     <button type="submit" class="btn btn-primary me-2 btn-fill">確認</button>
-                    <router-link to="/" class="link-danger ms-auto align-self-center">回登入頁</router-link>
+                    <router-link to="/Home/Login" class="link-danger ms-auto align-self-center">回登入頁</router-link>
                 </div>
             </div>
         </form>
@@ -46,7 +46,7 @@
                             alert("請至信箱確認新密碼");
 
                             //登入後回主頁
-                            this.$router.push("/");
+                            this.$router.push("/Home/Login");
                         }
                         else {
                             alert(response.data.errors.join('\n'));

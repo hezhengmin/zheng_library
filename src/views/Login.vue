@@ -25,8 +25,8 @@
             <div class="mb-2">
                 <div class="d-flex">
                     <button type="submit" class="btn btn-primary me-2 btn-fill">登入</button>
-                    <router-link to="/SignUp" tag="button" class="btn btn-primary btn-fill">註冊帳號</router-link>
-                    <router-link to="/ForgetPassword" class="link-danger ms-auto align-self-center">忘記密碼</router-link>
+                    <router-link to="/Home/SignUp" tag="button" class="btn btn-primary btn-fill">註冊帳號</router-link>
+                    <router-link to="/Home/ForgetPassword" class="link-danger ms-auto align-self-center">忘記密碼</router-link>
                 </div>
             </div>
         </form>
@@ -90,6 +90,9 @@
                 apiGetValidateCode({
                     url: '/ValidateCode',
                     method: "GET",
+                    //headers: {
+                    //    'Content-type': 'image/jpeg'
+                    //},
                 })
                     .then((response) => {
                         this.imageValidateCode = response.data.base64;

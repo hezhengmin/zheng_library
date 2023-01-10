@@ -23,7 +23,7 @@
             <div class="mb-2">
                 <div class="d-flex">
                     <button type="submit" class="btn btn-primary me-2 btn-fill">確認</button>
-                    <router-link to="/" class="link-danger ms-auto align-self-center">回登入頁</router-link>
+                    <router-link to="/Home/Login" class="link-danger ms-auto align-self-center">回登入頁</router-link>
                 </div>
             </div>
         </form>

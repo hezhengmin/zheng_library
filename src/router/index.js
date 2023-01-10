@@ -3,6 +3,12 @@ import VueRouter from "vue-router";
 import Login from "../views/Login.vue";
 import Layout from "../views/Layout.vue";
 import SignUp from "../views/SignUp.vue";
+import AccountEdit from "../views/Account/AccountEdit.vue";
+import BookIndex from "../views/Book/BookIndex.vue";
+import BookImport from "../views/Book/BookImport.vue";
+import BookEdit from "../views/Book/BookEdit.vue";
+import LoanIndex from "../views/Loan/LoanIndex.vue";
+import LoanEdit from "../views/Loan/LoanEdit.vue";
 
 Vue.use(VueRouter);
 
@@ -26,7 +32,7 @@ const routes = [
   {
     //無效網址，都導向首頁
     path: "*",
-    redirect: "/",
+    redirect: "/Home/Index",
   },
   {
     //首頁
@@ -40,6 +46,42 @@ const routes = [
         name: "Index",
         component: () => import("../views/Index.vue"),
       },
+      {
+        //帳號編輯(更改信箱、密碼)
+        path: "/Account/Account_Edit/:id",
+        name: "AccountEdit",
+        component: AccountEdit,
+      },
+      {
+        //書籍列表
+        path: "/Book/Book_Index",
+        name: "BookIndex",
+        component: BookIndex,
+      },
+      {
+        //書籍匯入列表
+        path: "/Book/Book_Import",
+        name: "BookImport",
+        component: BookImport,
+      },
+      {
+        //書籍編輯
+        path: "/Book/Book_Edit/:id",
+        name: "BookEdit",
+        component: BookEdit,
+      },
+      {
+        //借閱列表
+        path: "/Loan/Loan_Index",
+        name: "LoanIndex",
+        component: LoanIndex,
+      },
+      {
+        //借閱編輯
+        path: "/Loan/Loan_Edit/:id",
+        name: "LoanEdit",
+        component: LoanEdit,
+      },
     ],
   },
 ];
@@ -48,5 +90,23 @@ const router = new VueRouter({
   mode: "history",
   routes,
 });
+
+//導航守衛
+router.beforeEach((to, from, next) => {
+  //不用驗證的頁面
+  const publicPages = ['/', '/Home/SignUp', '/Home/ForgetPassword'];
+  //頁面是否要驗證
+  const authRequired = !publicPages.includes(to.path);
+  //登入是不是成功
+  const loggedIn = localStorage.getItem('isLogin');
+
+  if (authRequired && (loggedIn === null || loggedIn==='false')) {
+      next('/');
+  }
+  else
+  {
+      next();
+  }
+})
 
 export default router;
