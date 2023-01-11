@@ -94,15 +94,15 @@
                                 <div class="card-body">
                                     <!-- 圖片輪播 -->
                                     <template>
-                                        <!-- <swiper class="swiper" :options="swiperOption">
+                                        <swiper class="swiper" :options="swiperOption">
                                             <swiper-slide v-for="photo in book.bookPhotos" :key="photo.id">
-                                                <img :src="`${process.env.WEBAPI}/StaticFiles/` + photo.uploadFileId + photo.extension" class="bookPhoto img-thumbnail  rounded mx-auto d-block" :alt="photo.name">
+                                                <img :src="'https://localhost:44323/StaticFiles/' + photo.uploadFileId + photo.extension" class="bookPhoto img-thumbnail  rounded mx-auto d-block" :alt="photo.name">
                                                 <h3 class="text-center">{{photo.fileCompleteName}}</h3>
                                             </swiper-slide>
                                             <div class="swiper-pagination" slot="pagination"></div>
                                             <div class="swiper-button-prev" slot="button-prev"></div>
                                             <div class="swiper-button-next" slot="button-next"></div>
-                                        </swiper> -->
+                                        </swiper>
                                     </template>
                                     <!--檔案上傳-->
                                     <ValidationProvider v-slot="{ valid, errors, validate}" name="檔案" rules="image">
@@ -355,32 +355,32 @@
     </div>
 </template>
 <script>
-
     import UploadFile from "../../../src/components/UploadFile.vue";
-    // import { Swiper, SwiperSlide } from 'vue-awesome-swiper'
-    // import 'swiper/dist/css/swiper.css'
+    //https://github.com/surmon-china/vue-awesome-swiper
+    import { Swiper, SwiperSlide } from 'vue-awesome-swiper';
+    import 'swiper/css/swiper.css';
     import { apiGetBook, apiGetBookPhoto, apiPostBookPhoto, apiPutBook, apiPostBook } from 'api'
 
     export default {
         name: "BookEdit",
         components: {
             UploadFile,
-            // Swiper,
-            // SwiperSlide
+            Swiper,
+            SwiperSlide
         },
         data() {
             return {
-                // swiperOption: {
-                //     spaceBetween: 30,
-                //     pagination: {
-                //         el: '.swiper-pagination',
-                //         clickable: true
-                //     },
-                //     navigation: {
-                //         nextEl: '.swiper-button-next',
-                //         prevEl: '.swiper-button-prev'
-                //     }
-                // },
+                swiperOption: {
+                    spaceBetween: 30,
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev'
+                    }
+                },
                 book: {
                     title: "",
                     status: "",
