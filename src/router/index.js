@@ -22,17 +22,19 @@ const routes = [
   {
     //註冊帳號
     path: "/SignUp",
+    name: "SignUp",
     component: SignUp,
   },
   {
     //忘記密碼頁面
     path: "/ForgetPassword",
+    name: "ForgetPassword",
     component: () => import("../views/ForgetPassword.vue"),
   },
   {
     //無效網址，都導向首頁
     path: "*",
-    redirect: "/Home/Index",
+    redirect: "/",
   },
   {
     //首頁
@@ -94,7 +96,7 @@ const router = new VueRouter({
 //導航守衛
 router.beforeEach((to, from, next) => {
   //不用驗證的頁面
-  const publicPages = ['/', '/Home/SignUp', '/Home/ForgetPassword'];
+  const publicPages = ['/', '/SignUp', '/ForgetPassword'];
   //頁面是否要驗證
   const authRequired = !publicPages.includes(to.path);
   //登入是不是成功

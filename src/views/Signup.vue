@@ -55,7 +55,7 @@
                             alert("註冊成功");
 
                             //回登入頁
-                            this.$router.push("/Home/Login");
+                            this.$router.push("/");
                         }
                         else {
                             alert(response.data.errors.join('\n'));
