@@ -31,7 +31,8 @@
             class="form-control"
             required
           />
-          <img :src="imageValidateCode" />
+          <img :src="imageValidateCode" class="border border-2"/>
+          <a href="" v-on:click.prevent="refreshValidateCode()">重刷</a>
         </div>
       </div>
 
@@ -156,5 +157,6 @@ export default {
   h2 {
     width: 140px;
   }
+  
 }
 </style>

@@ -94,6 +94,7 @@
     </div>
 </template>
 <script>
+    import moment from 'moment';
     import { apiGetAccountSelectList, apiPostLoan, apiGetBookSelectList, apiGetLoan, apiPutLoan } from 'api'
     export default {
         name: "LoanEdit",
@@ -104,7 +105,6 @@
                     bookId: "00000000-0000-0000-0000-000000000000",
                     bookTitle: "",
                     id: "",
-                    startEndDate: [],
                     issueDate: "",
                     dueDate: "",
                     returnDate: null,
@@ -274,6 +274,18 @@
                 this.initBookSelectList()
                     .then(success => {
                         this.initAccountSelectList();
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+                    .finally(()=>{
+
+                          let today = new Date();
+                          console.log(today);
+                          this.issueDate = today;//借閱開始日期
+                          this.dueDate = today;//借閱歸還日期
+                          console.log(moment.format('YYYY-MM-DD')); // pt-br
+
                     })
             }
         }
