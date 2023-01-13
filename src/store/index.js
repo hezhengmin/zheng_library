@@ -20,7 +20,6 @@ export default new Vuex.Store({
             state.jwtToken = token;
         },
         setAccountInfo(state, account) {
-            //console.log(`setAccountInfo`,account);
             state.accountInfo = JSON.parse(account);
         },
         setIsLogin(state, islogin) {
