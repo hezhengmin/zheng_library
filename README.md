@@ -1,5 +1,7 @@
 # vue 圖書館後台管理系統
 
+> [影片DEMO](https://www.youtube.com/watch?v=8MDoYdIHYBQ)
+
 ## 專案說明
 
 該專案使用 `vue-cli v2` 版本，是讓使用者上傳書籍及借閱的後台。
