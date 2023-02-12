@@ -48,6 +48,9 @@ export const apiPostLoanExportExcel = (config) => createAxios().request(config);
 //登入驗證碼圖片
 export const apiGetValidateCode = (config) => createAxios().request(config);
 
+//下載為壓縮檔
+export const apiPostDownloadZip = (config) => createAxios().request(config);
+
 const createAxios = () => {
     const newInstance = axios.create({
         baseURL: `${process.env.WEBAPI}/api`,
