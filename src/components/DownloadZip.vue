@@ -1,6 +1,8 @@
 <template>
   <div class="downloadZip">
-    <button type="button" class="btn btn-primary btn-fill" @click="downloadZip">下載壓縮檔</button>
+    <button type="button" class="btn btn-primary btn-fill" @click="downloadZip">
+      下載壓縮檔
+    </button>
   </div>
 </template>
 
@@ -16,7 +18,6 @@ export default {
   },
   methods: {
     downloadZip() {
-      console.log("downloadZip",this.guids);
       const method = "POST";
       const url = `/File/DownloadZip`;
 
@@ -25,19 +26,33 @@ export default {
         url,
         method,
         responseType: "blob", //important
-        data:{
-          guids: this.guids
-        }
-      }).then(({ data }) => {
-        console.log(data);
-        const downloadUrl = window.URL.createObjectURL(new Blob([data], { type: 'application/zip' }));
-        const link = document.createElement("a");
-        link.href = downloadUrl;
-        link.setAttribute("download", this.fileName); //any other extension
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-      });
+        data: {
+          guids: this.guids,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+          const url = window.URL.createObjectURL(new Blob([res.data]));
+          const link = document.createElement("a");
+          link.href = url;
+          //從header取得 '檔案名稱'
+          const fileName = decodeURI(
+            res.headers["content-disposition"]
+              .split(" ")[2]
+              .replace("filename*=UTF-8''", "")
+          );
+          link.setAttribute("download", fileName);
+          document.body.appendChild(link);
+          link.click();
+          link.remove();
+        })
+        .catch((error) => {
+          if (error.response) {
+            alert(error.response.data);
+          } else {
+            alert(error.message);
+          }
+        });
     },
   },
   created() {

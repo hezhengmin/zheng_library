@@ -786,7 +786,7 @@ export default {
     //全部的圖片guid
     guids() {
       if (this.book.bookPhotos?.length === 0) return [];
-      let arrGuids = this.book.bookPhotos.map(photo=> photo.uploadFileId);
+      let arrGuids = this.book.bookPhotos?.map(photo=> photo.uploadFileId);
       return arrGuids;
     },
   },
