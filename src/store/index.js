@@ -1,5 +1,13 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+/*
+ * @Author: hezhengmin zhengmin099@gmail.com
+ * @Date: 2023-12-24 00:12:53
+ * @LastEditors: hezhengmin zhengmin099@gmail.com
+ * @LastEditTime: 2023-12-24 11:53:25
+ * @FilePath: \zheng_library\src\store\index.js
+ * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ */
+import Vue from "vue";
+import Vuex from "vuex";
 
 Vue.use(Vuex);
 
@@ -7,7 +15,7 @@ export default new Vuex.Store({
     //儲存狀態
     state: {
         //登入成功的token
-        jwtToken: '',
+        jwtToken: "",
         //使用者基本資訊
         accountInfo: {},
         //登入是否成功
@@ -15,7 +23,7 @@ export default new Vuex.Store({
     },
     //由Mutations去更改State
     mutations: {
-        //token 
+        //token
         setJwtToken(state, token) {
             state.jwtToken = token;
         },
@@ -24,19 +32,19 @@ export default new Vuex.Store({
         },
         setIsLogin(state, islogin) {
             state.isLogin = islogin;
-        }
+        },
     },
     // Commit去呼叫Mutations
     actions: {
         fetchAccessToken({ commit }) {
-            commit('setJwtToken', localStorage.getItem('jwtToken'));
+            commit("setJwtToken", localStorage.getItem("jwtToken"));
         },
         fetchAccessAccount({ commit }) {
-            commit('setAccountInfo', localStorage.getItem('account'));
+            commit("setAccountInfo", localStorage.getItem("account"));
         },
         fetchAccessIsLogin({ commit }) {
-            commit('setIsLogin', localStorage.getItem('isLogin'));
-        }
+            commit("setIsLogin", localStorage.getItem("isLogin"));
+        },
     },
     getters: {
         getJwtToken(state) {
@@ -48,6 +56,6 @@ export default new Vuex.Store({
         //帳號Id
         getUserId(state) {
             return state.accountInfo?.userId;
-        }
-    }
-})
+        },
+    },
+});
