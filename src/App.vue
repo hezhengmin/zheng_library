@@ -24,6 +24,8 @@ export default {
             //this.$axios.defaults.headers.common["Authorization"] = `Bearer ${this.$store.getters.getJwtToken}`;
             axios.defaults.headers.common["Authorization"] = `Bearer ${this.$store.getters.getJwtToken}`;
         }
+
+        console.log("App.vue");
     },
 };
 </script>

@@ -16,6 +16,8 @@ export default new Vuex.Store({
     state: {
         //登入成功的token
         jwtToken: "",
+        //自動重新驗證使用者並產生新的 JWT token
+        refreshToken: "",
         //使用者基本資訊
         accountInfo: {},
         //登入是否成功
@@ -27,8 +29,11 @@ export default new Vuex.Store({
         setJwtToken(state, token) {
             state.jwtToken = token;
         },
+        setRefreshToken(state, refreshToken) {
+            state.refreshToken = refreshToken;
+        },
         setAccountInfo(state, account) {
-            state.accountInfo = JSON.parse(account);
+            state.accountInfo = account;
         },
         setIsLogin(state, islogin) {
             state.isLogin = islogin;
@@ -44,6 +49,22 @@ export default new Vuex.Store({
         },
         fetchAccessIsLogin({ commit }) {
             commit("setIsLogin", localStorage.getItem("isLogin"));
+        },
+        fetchAccessAccountInfo({ commit, state }, accountInfo) {
+            commit("setJwtToken", accountInfo.jwtToken);
+            commit("setRefreshToken", accountInfo.refreshToken);
+            commit("setAccountInfo", accountInfo.account);
+            commit("setIsLogin", accountInfo.success);
+            //localStorage 存 jwtToken
+            localStorage.setItem("jwtToken", accountInfo.jwtToken);
+            //localStorage 存 refreshToken
+            localStorage.setItem("refreshToken", accountInfo.refreshToken);
+            //存User基本資訊
+            localStorage.setItem("account", JSON.stringify(accountInfo.account));
+            //存是否登入
+            localStorage.setItem("isLogin", accountInfo.success);
+
+            console.log(accountInfo);
         },
     },
     getters: {

@@ -73,7 +73,7 @@ const createAxios = () => {
                 alert("未授權，回登入頁面");
                 localStorage.clear();
 
-                //window.location = `${process.env.WEBSITE}`;
+                window.location = `${process.env.WEBSITE}`;
             }
             return Promise.reject(error);
         }
