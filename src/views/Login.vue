@@ -66,15 +66,7 @@ export default {
                     if (response.data.success) {
                         alert("登入成功");
 
-                        // localStorage.setItem("jwtToken", response.data.jwtToken);
-                        // this.$store.commit("setJwtToken", response.data.jwtToken);
-                        //
-                        // let accountInfo = JSON.stringify(response.data.account);
-                        // localStorage.setItem("account", accountInfo);
-                        // this.$store.commit("setAccountInfo", accountInfo);
-                        //
-                        // localStorage.setItem("isLogin", response.data.success);
-                        // this.$store.commit("setIsLogin", response.data.success);
+                        //登入後，設定store
                         this.$store.dispatch("fetchAccessAccountInfo", response.data);
                         axios.defaults.headers.common["Authorization"] = `Bearer ${this.$store.getters.getJwtToken}`;
 

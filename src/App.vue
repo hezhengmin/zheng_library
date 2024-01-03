@@ -9,23 +9,16 @@ import axios from "axios";
 export default {
     name: "App",
     methods: {
-        ...mapActions(["fetchAccessToken", "fetchAccessAccount", "fetchAccessIsLogin"]),
+        ...mapActions(["resetAllState"]),
     },
     created() {
-        //之前有登入，從localStorage設定token
-        this.fetchAccessToken();
-        //使用者資訊
-        this.fetchAccessAccount();
-        //存取是否登入
-        this.fetchAccessIsLogin();
-
+        //重新整理後，從localStorage設定回vuex store
+        this.resetAllState();
         //axios在header附加token
         if (this.$store.getters.getJwtToken !== null) {
             //this.$axios.defaults.headers.common["Authorization"] = `Bearer ${this.$store.getters.getJwtToken}`;
             axios.defaults.headers.common["Authorization"] = `Bearer ${this.$store.getters.getJwtToken}`;
         }
-
-        console.log("App.vue");
     },
 };
 </script>

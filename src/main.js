@@ -38,5 +38,3 @@ new Vue({
     i18n, //中文化
     render: (h) => h(App),
 }).$mount("#app");
-
-console.log("main.js");

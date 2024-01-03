@@ -41,15 +41,7 @@ export default new Vuex.Store({
     },
     // Commit去呼叫Mutations
     actions: {
-        fetchAccessToken({ commit }) {
-            commit("setJwtToken", localStorage.getItem("jwtToken"));
-        },
-        fetchAccessAccount({ commit }) {
-            commit("setAccountInfo", localStorage.getItem("account"));
-        },
-        fetchAccessIsLogin({ commit }) {
-            commit("setIsLogin", localStorage.getItem("isLogin"));
-        },
+        //登入後，設定store
         fetchAccessAccountInfo({ commit, state }, accountInfo) {
             commit("setJwtToken", accountInfo.jwtToken);
             commit("setRefreshToken", accountInfo.refreshToken);
@@ -63,8 +55,12 @@ export default new Vuex.Store({
             localStorage.setItem("account", JSON.stringify(accountInfo.account));
             //存是否登入
             localStorage.setItem("isLogin", accountInfo.success);
-
-            console.log(accountInfo);
+        },
+        //重新整理後，從localStorage設定回vuex store
+        resetAllState({ commit, state }) {
+            commit("setJwtToken", localStorage.getItem("jwtToken"));
+            commit("setAccountInfo", JSON.parse(localStorage.getItem("account")));
+            commit("setIsLogin", localStorage.getItem("isLogin"));
         },
     },
     getters: {
