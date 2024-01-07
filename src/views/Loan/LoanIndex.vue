@@ -1,10 +1,6 @@
 ﻿<template>
     <div class="LoanIndex">
-        <loading loader="spinner"
-                 :active.sync="isLoading"
-                 :can-cancel="true"
-                 :is-full-page="false">
-        </loading>
+        <loading loader="spinner" :active.sync="isLoading" :can-cancel="true" :is-full-page="false"></loading>
 
         <div class="card">
             <div class="card-header">
@@ -13,10 +9,12 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-auto">
-                        書名：<input type="text" v-model="BookTitle" class="form-control" />
+                        書名：
+                        <input type="text" v-model="BookTitle" class="form-control" />
                     </div>
                     <div class="col-auto">
-                        帳號：<input type="text" v-model="UserId" class="form-control" />
+                        帳號：
+                        <input type="text" v-model="UserId" class="form-control" />
                     </div>
                     <div class="col-12 mt-3">
                         <button class="btn btn-primary btn-fill" @click="search">搜尋</button>
@@ -29,32 +27,30 @@
         <div class="card mt-3">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
+                    <div class="p-2">第 {{ pageNumber }} 頁，總共 {{ totalRecords }} 筆</div>
                     <div class="p-2">
-                        第 {{pageNumber}} 頁，總共 {{totalRecords}} 筆
-                    </div>
-                    <div class="p-2">
-                        <paginate v-model="pageNumber"
-                                  :page-count="totalPages"
-                                  :click-handler="getLoanList"
-                                  :prev-text="'上一頁'"
-                                  :next-text="'下一頁'"
-                                  :container-class="'pagination'"
-                                  :page-class="'page-item'"
-                                  :page-link-class="'page-link'"
-                                  :prev-link-class="'page-link'"
-                                  :next-link-class="'page-link'">
-                        </paginate>
+                        <paginate
+                            v-model="pageNumber"
+                            :page-count="totalPages"
+                            :click-handler="getLoanList"
+                            :prev-text="'上一頁'"
+                            :next-text="'下一頁'"
+                            :container-class="'pagination'"
+                            :page-class="'page-item'"
+                            :page-link-class="'page-link'"
+                            :prev-link-class="'page-link'"
+                            :next-link-class="'page-link'"></paginate>
                     </div>
                 </div>
                 <table class="table table-bordered table-hover">
                     <colgroup>
-                        <col style="width: 3em;">
-                        <col style="width: 20em;">
-                        <col style="width: 8em;">
-                        <col style="width: 7em;">
-                        <col style="width: 7em;">
-                        <col style="width: 7em;">
-                        <col style="width: 5em;">
+                        <col style="width: 3em" />
+                        <col style="width: 20em" />
+                        <col style="width: 8em" />
+                        <col style="width: 7em" />
+                        <col style="width: 7em" />
+                        <col style="width: 7em" />
+                        <col style="width: 5em" />
                     </colgroup>
                     <thead>
                         <tr>
@@ -69,17 +65,18 @@
                     </thead>
                     <tbody>
                         <tr v-for="(item, index) in LoanList" :key="item.id">
-                            <td>{{index + 1}}</td>
-                            <td>{{item.bookTitle}}</td>
-                            <td>{{item.userId}}</td>
-                            <td>{{item.issueDate | momentTW}} </td>
-                            <td>{{item.dueDate | momentTW }}</td>
-                            <td>{{item.returnDate | momentTW }}</td>
+                            <td>{{ index + 1 }}</td>
+                            <td>{{ item.bookTitle }}</td>
+                            <td>{{ item.userId }}</td>
+                            <td>{{ item.issueDate | momentTW }}</td>
+                            <td>{{ item.dueDate | momentTW }}</td>
+                            <td>{{ item.returnDate | momentTW }}</td>
                             <td>
-                                <router-link :to="{
-                                 name: 'LoanEdit',
-                                 params: { id: item.id }
-                                 }">
+                                <router-link
+                                    :to="{
+                                        name: 'LoanEdit',
+                                        params: { id: item.id },
+                                    }">
                                     編輯
                                 </router-link>
                                 <a href="" @click.prevent="deleteLoan(item.id)">刪除</a>
@@ -92,111 +89,114 @@
     </div>
 </template>
 <script>
-    import mixin from "mixin";
-    import { apiPostLoanList, apiPostLoanExportExcel, apiDeleteLoan } from "api";
-    import Loading from 'vue-loading-overlay';
-    import 'vue-loading-overlay/dist/vue-loading.css';
+import mixin from "mixin";
+import { apiPostLoanList, apiPostLoanExportExcel, apiDeleteLoan } from "api";
+import Loading from "vue-loading-overlay";
+import "vue-loading-overlay/dist/vue-loading.css";
 
-    export default {
-        name: "LoanIndex",
-        mixins: [mixin],
-        data() {
-            return {
-                BookTitle: '',
-                UserId: '',
-                LoanList: [],
-                isLoading: true, //載入
-            }
-        },
-        components: {
-            Loading
-        },
-        methods: {
-            getLoanList() {
-                let filter = {
-                    BookTitle: this.BookTitle,
-                    UserId: this.UserId,
-                    PaginationResult: {
-                        PageNumber: this.pageNumber,
-                        PageSize: this.pageSize
-                    }
-                };
-                apiPostLoanList(filter)
-                    .then((response) => {
+export default {
+    name: "LoanIndex",
+    mixins: [mixin],
+    data() {
+        return {
+            BookTitle: "",
+            UserId: "",
+            LoanList: [],
+            isLoading: false, //載入
+        };
+    },
+    components: {
+        Loading,
+    },
+    methods: {
+        getLoanList() {
+            let filter = {
+                BookTitle: this.BookTitle,
+                UserId: this.UserId,
+                PaginationResult: {
+                    PageNumber: this.pageNumber,
+                    PageSize: this.pageSize,
+                },
+            };
 
-                        this.LoanList = response.data.data;
-                        //總頁數
-                        this.totalPages = response.data.totalPages;
-                        //總筆數
-                        this.totalRecords = response.data.totalRecords;
+            this.isLoading = true;
 
-                         //資料Loading載入結束
-                        this.isLoading = false
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    })
-            },
-            deleteLoan(id) {
-                apiDeleteLoan(`/Loan/${id}`)
-                    .then((response) => {
-                        if (response.status === 204) {
-                            alert("刪除成功");
-                            this.getLoanList();
-                        }
-                        else {
-                            alert("刪除失敗");
-                        }
-                    })
-                    .catch((error) => {
-                        console.log(error);
-                    })
-            },
-            search() {
-                //搜尋後，從第一頁開始
-                this.pageNumber = 1;
-                this.getLoanList();
-            },
-            addLoan() {
-                //空guid代表新增
-                this.$router.push({ name: 'LoanEdit', params: { id: '00000000-0000-0000-0000-000000000000' } })
-            },
-            //檔案下載
-            exportExcel() {
-                const method = 'POST';
-                const url = `/Loan/Export`;
-                let filter = {
-                    BookTitle: this.BookTitle,
-                    UserId: this.UserId
-                };
-
-                apiPostLoanExportExcel({
-                    url,
-                    method,
-                    data: filter,
-                    responseType: 'blob', //important
+            apiPostLoanList(filter)
+                .then((response) => {
+                    this.LoanList = response.data.data;
+                    //總頁數
+                    this.totalPages = response.data.totalPages;
+                    //總筆數
+                    this.totalRecords = response.data.totalRecords;
                 })
-                    .then(({ data }) => {
-                        const downloadUrl = window.URL.createObjectURL(new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }));
-                        const link = document.createElement('a');
-                        link.href = downloadUrl;
-                        link.setAttribute('download', "匯出書籍借閱紀錄"); //any other extension
-                        document.body.appendChild(link);
-                        link.click();
-                        link.remove();
-                    })
-                    .catch(err => {
-                        console.log(err);
-                        reject(err);
-                    })
-            },
+                .catch((error) => {
+                    console.log(error);
+                })
+                .finally(() => {
+                    //資料Loading載入結束
+                    this.isLoading = false;
+                });
         },
-        created() {
-            //書籍借閱列表
+        deleteLoan(id) {
+            apiDeleteLoan(`/Loan/${id}`)
+                .then((response) => {
+                    if (response.status === 204) {
+                        alert("刪除成功");
+                        this.getLoanList();
+                    } else {
+                        alert("刪除失敗");
+                    }
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        },
+        search() {
+            //搜尋後，從第一頁開始
+            this.pageNumber = 1;
             this.getLoanList();
-        }
-    };
+        },
+        addLoan() {
+            //空guid代表新增
+            this.$router.push({ name: "LoanEdit", params: { id: "00000000-0000-0000-0000-000000000000" } });
+        },
+        //檔案下載
+        exportExcel() {
+            const method = "POST";
+            const url = `/Loan/Export`;
+            let filter = {
+                BookTitle: this.BookTitle,
+                UserId: this.UserId,
+            };
+
+            apiPostLoanExportExcel({
+                url,
+                method,
+                data: filter,
+                responseType: "blob", //important
+            })
+                .then(({ data }) => {
+                    const downloadUrl = window.URL.createObjectURL(
+                        new Blob([data], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" })
+                    );
+                    const link = document.createElement("a");
+                    link.href = downloadUrl;
+                    link.setAttribute("download", "匯出書籍借閱紀錄"); //any other extension
+                    document.body.appendChild(link);
+                    link.click();
+                    link.remove();
+                })
+                .catch((err) => {
+                    console.log(err);
+                    reject(err);
+                });
+        },
+    },
+    created() {
+        //書籍借閱列表
+        this.getLoanList();
+    },
+};
 </script>
 
-<style>
-</style>
+<style></style>

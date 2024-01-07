@@ -11,7 +11,7 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-export default new Vuex.Store({
+export const store = new Vuex.Store({
     //儲存狀態
     state: {
         //登入成功的token

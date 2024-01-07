@@ -6,9 +6,9 @@
  * @FilePath: \zheng_library\src\api\index.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import axios from "axios";
 
-const token = `Bearer ${localStorage.getItem("jwtToken")}`;
+import axios from "axios";
+import { store } from "../store";
 
 //帳號登入
 export const apiAccountLogin = (data) => createAxios().post("/Account/Login", data);
@@ -57,11 +57,12 @@ export const apiGetValidateCode = (config) => createAxios().request(config);
 //下載為壓縮檔
 export const apiPostDownloadZip = (config) => createAxios().request(config);
 
+const jwtToken = `Bearer ${store.getters.getJwtToken}`;
 const createAxios = () => {
     const newInstance = axios.create({
         baseURL: "/api",
         headers: {
-            Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+            Authorization: jwtToken,
         },
     });
 
@@ -70,10 +71,13 @@ const createAxios = () => {
         (error) => {
             if (error.response.status === 401) {
                 console.log("401 未授權，回登入頁面", error);
-                alert("未授權，回登入頁面");
-                localStorage.clear();
+                console.log("store", store.getters.getJwtToken);
+                console.log("process.env.WEBSITE", process.env.WEBSITE);
 
-                window.location = `${process.env.WEBSITE}`;
+                //alert("未授權，回登入頁面", store.getters.getJwtToken);
+
+                //localStorage.clear();
+                //window.location = `${process.env.WEBSITE}`;
             }
             return Promise.reject(error);
         }

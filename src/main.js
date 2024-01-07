@@ -2,7 +2,7 @@ import "./scss/main.scss"; //bootstrap
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router"; //路由
-import store from "./store"; //存token用
+import { store } from "./store"; //存token用
 import Paginate from "vuejs-paginate"; //分頁
 import VeeValidate from "vee-validate"; //驗證
 import zhTW from "vee-validate/dist/locale/zh_TW";
@@ -23,6 +23,7 @@ Vue.component("DatePicker", DatePicker); //日期選擇器
 const i18n = new VueI18n({
     locale: "zhTW",
 });
+console.log("process.env.WEBSITE", process.env);
 
 Vue.use(VeeValidate, {
     events: "input|blur",
