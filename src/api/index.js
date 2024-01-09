@@ -61,14 +61,12 @@ const jwtToken = `Bearer ${store.getters.getJwtToken}`;
 const createAxios = () => {
     const newInstance = axios.create({
         baseURL: "/api",
-        headers: {
-            Authorization: jwtToken,
-        },
     });
 
     newInstance.interceptors.response.use(
         (config) => config,
         (error) => {
+            console.log(error);
             if (error.response.status === 401) {
                 console.log("401 未授權，回登入頁面", error);
                 console.log("store", store.getters.getJwtToken);
@@ -79,6 +77,23 @@ const createAxios = () => {
                 //localStorage.clear();
                 //window.location = `${process.env.WEBSITE}`;
             }
+            return Promise.reject(error);
+        }
+    );
+
+    newInstance.interceptors.request.use(
+        (config) => {
+            // Do something before request is sent
+            // use getters to retrieve the access token from vuex
+            // store
+            const jwtToken = store.getters.getJwtToken;
+            if (jwtToken) {
+                config.headers.Authorization = `Bearer ${jwtToken}`;
+            }
+            return config;
+        },
+        (error) => {
+            // Do something with request error
             return Promise.reject(error);
         }
     );
