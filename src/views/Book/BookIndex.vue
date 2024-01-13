@@ -95,7 +95,9 @@ import mixin from "mixin";
 import { apiPostBookList, apiDeleteBook, apiPostBookExportExcel } from "api";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
+import BookService from "../../api/service/book-service";
 
+let bookService = null;
 export default {
     name: "BookIndex",
     mixins: [mixin],
@@ -122,7 +124,8 @@ export default {
             };
 
             this.isLoading = true;
-            apiPostBookList(filter)
+            bookService
+                .getList(filter)
                 .then((response) => {
                     this.bookList = response.data.data;
                     //總頁數
@@ -204,6 +207,7 @@ export default {
         },
     },
     created() {
+        bookService = new BookService();
         this.getBookList();
     },
 };

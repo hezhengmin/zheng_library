@@ -11,7 +11,7 @@ import axios from "axios";
 import { store } from "../store";
 
 //帳號登入
-export const apiAccountLogin = (data) => createAxios().post("/Account/Login", data);
+//export const apiAccountLogin = (data) => createAxios().post("/Account/Login", data);
 //帳號註冊
 export const apiAccountSignup = (data) => createAxios().post("/Account", data);
 export const apiPatchAccountEmail = (url, data) => createAxios().patch(url, data);

@@ -36,9 +36,11 @@
     </div>
 </template>
 <script>
-import { apiAccountLogin, apiGetValidateCode } from "api";
-import axios from "axios";
+import AccountService from "../api/service/account-service";
+import ValidateCodeService from "../api/service/validateCode-service";
 
+let accountService = null;
+let validateCodeService = null;
 export default {
     name: "Login",
     data() {
@@ -56,20 +58,18 @@ export default {
             this.initValidateCode();
         },
         login() {
-            apiAccountLogin({
-                userId: this.userId,
-                password: this.password,
-                validateCode: this.validateCode,
-                validateCodeHash: this.validateCodeHash,
-            })
+            accountService
+                .login({
+                    userId: this.userId,
+                    password: this.password,
+                    validateCode: this.validateCode,
+                    validateCodeHash: this.validateCodeHash,
+                })
                 .then((response) => {
                     if (response.data.success) {
                         alert("登入成功");
-
                         //登入後，設定store
                         this.$store.dispatch("fetchAccessAccountInfo", response.data);
-                        axios.defaults.headers.common["Authorization"] = `Bearer ${this.$store.getters.getJwtToken}`;
-
                         //登入後回主頁
                         this.$router.push("/Home/Index");
                     } else {
@@ -83,10 +83,8 @@ export default {
         //初始化驗證碼
         initValidateCode() {
             return new Promise((resolve, reject) => {
-                apiGetValidateCode({
-                    url: "/ValidateCode",
-                    method: "GET",
-                })
+                validateCodeService
+                    .getValidateCode()
                     .then((response) => {
                         this.imageValidateCode = response.data.base64;
                         this.validateCodeHash = response.data.hash;
@@ -109,7 +107,10 @@ export default {
             });
         },
     },
-    async created() {
+    async mounted() {
+        accountService = new AccountService();
+        validateCodeService = new ValidateCodeService();
+
         await this.initValidateCode();
         await this.initAccount();
     },
