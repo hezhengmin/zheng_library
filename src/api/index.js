@@ -23,7 +23,7 @@ export const apiPostAccountForgetPassword = (data) => createAxios().post("/Accou
 export const apiGetAccountSelectList = () => createAxios().get("/Account/SelectList");
 
 //書籍Book
-export const apiPostBookList = (data) => createAxios().post("/Book/List", data);
+//export const apiPostBookList = (data) => createAxios().post("/Book/List", data);
 export const apiGetBook = (url) => createAxios().get(url);
 export const apiDeleteBook = (url) => createAxios().delete(url);
 export const apiPostBookExportExcel = (config) => createAxios().request(config);

@@ -92,7 +92,7 @@
 </template>
 <script>
 import mixin from "mixin";
-import { apiPostBookList, apiDeleteBook, apiPostBookExportExcel } from "api";
+import { apiDeleteBook, apiPostBookExportExcel } from "api";
 import Loading from "vue-loading-overlay";
 import "vue-loading-overlay/dist/vue-loading.css";
 import BookService from "../../api/service/book-service";

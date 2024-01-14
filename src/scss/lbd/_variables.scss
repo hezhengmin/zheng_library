@@ -6,20 +6,20 @@ $none: 0 !default;
 $border-thin: 1px !default;
 $border-thick: 2px !default;
 
-$white-color: #FFFFFF !default;
-$white-bg: #FFFFFF !default;
+$white-color: #ffffff !default;
+$white-bg: #ffffff !default;
 
-$smoke-bg: #F5F5F5 !default;
+$smoke-bg: #f5f5f5 !default;
 
-$black-bg: rgba(30,30,30,.97) !default;
+$black-bg: rgba(30, 30, 30, 0.97) !default;
 
 $black-color: #333333 !default;
 $black-hr: #444444 !default;
 
-$light-gray: #E3E3E3 !default;
-$medium-gray: #DDDDDD !default;
-$medium-dark-gray: #AAAAAA !default;
-$dark-gray: #9A9A9A !default;
+$light-gray: #e3e3e3 !default;
+$medium-gray: #dddddd !default;
+$medium-dark-gray: #aaaaaa !default;
+$dark-gray: #9a9a9a !default;
 
 $transparent-bg: transparent !default;
 
@@ -27,39 +27,34 @@ $default-color: #888888 !default;
 $default-bg: #888888 !default;
 $default-states-color: #777777 !default;
 
-$primary-color: #3472F7 !default;
-$primary-bg: #3472F7 !default;
-$primary-states-color: #1D62F0 !default;
+$primary-color: #3472f7 !default;
+$primary-bg: #3472f7 !default;
+$primary-states-color: #1d62f0 !default;
 
-$success-color: #87CB16 !default;
-$success-bg: #87CB16 !default;
-$success-states-color: #049F0C !default;
+$success-color: #87cb16 !default;
+$success-bg: #87cb16 !default;
+$success-states-color: #049f0c !default;
 
-$info-color: #1DC7EA !default;
-$info-bg: #1DC7EA !default;
+$info-color: #1dc7ea !default;
+$info-bg: #1dc7ea !default;
 $info-states-color: lighten($info-color, 8%) !default;
 
-$warning-color: #FF9500 !default;
-$warning-bg: #FF9500 !default;
-$warning-states-color: #ED8D00 !default;
+$warning-color: #ff9500 !default;
+$warning-bg: #ff9500 !default;
+$warning-states-color: #ed8d00 !default;
 
-
-$danger-color: #FF4A55 !default;
-$danger-bg: #FF4A55 !default;
-$danger-states-color: #EE2D20 !default;
-
-
+$danger-color: #ff4a55 !default;
+$danger-bg: #ff4a55 !default;
+$danger-states-color: #ee2d20 !default;
 
 $link-disabled-color: #666666 !default;
 
-
 /*      light colors         */
-$light-blue: rgba($primary-color, .2);
-$light-azure: rgba($info-color, .2);
-$light-green: rgba($success-color, .2);
-$light-orange: rgba($warning-color, .2);
-$light-red: rgba($danger-color, .2);
-
+$light-blue: rgba($primary-color, 0.2);
+$light-azure: rgba($info-color, 0.2);
+$light-green: rgba($success-color, 0.2);
+$light-orange: rgba($warning-color, 0.2);
+$light-red: rgba($danger-color, 0.2);
 
 //== Components
 //
@@ -128,8 +123,7 @@ $line-height-general: 1.5 !default;
 $line-height: 20px !default;
 $line-height-lg: 54px !default;
 
-$sidebar-width: calc(100% - 260px) !default;
-
+$sidebar-width: 200px !default;
 
 $border-radius-top: 10px 10px 0 0 !default;
 $border-radius-bottom: 0 0 10px 10px !default;
@@ -152,7 +146,6 @@ $transition-bezier: cubic-bezier(0.34, 1.61, 0.7, 1) !default;
 $transition-ease: ease 0s;
 $transition-ease-in: ease-in !default;
 $transition-ease-out: ease-out !default;
-
 
 $navbar-padding-a: 10px 15px;
 $navbar-margin-a: 10px 3px;
@@ -179,7 +172,6 @@ $border-radius-icon: 15px !default;
 
 $size-icon: 64px;
 $size-icon-sm: 32px;
-
 
 $height-icon-sm: 32px;
 $width-icon-sm: 32px;
@@ -232,30 +224,26 @@ $social-reddit: #ff4500;
 $social-tumblr: #35465c;
 $social-behance: #1769ff;
 
-
 $filter-blue: darken($primary-color, 10%);
 $filter-azure: darken($info-color, 10%);
 $filter-green: darken($success-color, 10%);
 $filter-orange: darken($warning-color, 10%);
 $filter-red: darken($danger-color, 10%);
 
-
-$new-blue: #1DC7EA;
-$new-purple: #9368E9;
-$new-red: #FB404B;
-$new-green: #87CB16;
-$new-orange: #FFA534;
-$new-dark-blue: #1F77D0;
+$new-blue: #1dc7ea;
+$new-purple: #9368e9;
+$new-red: #fb404b;
+$new-green: #87cb16;
+$new-orange: #ffa534;
+$new-dark-blue: #1f77d0;
 $new-black: #5e5e5e;
-
 
 $topbar-x: topbar-x !default;
 $topbar-back: topbar-back !default;
 $bottombar-x: bottombar-x !default;
 $bottombar-back: bottombar-back !default;
 
-
-$white-navbar: rgba(#FFFFFF, .96);
+$white-navbar: rgba(#ffffff, 0.96);
 $blue-navbar: lighten($new-dark-blue, 10%);
 $azure-navbar: lighten($new-blue, 15%);
 $green-navbar: lighten($new-green, 10%);

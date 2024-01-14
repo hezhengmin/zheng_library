@@ -28,15 +28,23 @@ export const store = new Vuex.Store({
         //token
         setJwtToken(state, token) {
             state.jwtToken = token;
+            //localStorage 存 jwtToken
+            localStorage.setItem("jwtToken", token);
         },
         setRefreshToken(state, refreshToken) {
             state.refreshToken = refreshToken;
+            //localStorage 存 refreshToken
+            localStorage.setItem("refreshToken", refreshToken);
         },
         setAccountInfo(state, account) {
             state.accountInfo = account;
+            //存User基本資訊
+            localStorage.setItem("account", JSON.stringify(account));
         },
         setIsLogin(state, islogin) {
             state.isLogin = islogin;
+            //存是否登入
+            localStorage.setItem("isLogin", islogin);
         },
     },
     // Commit去呼叫Mutations
@@ -47,26 +55,17 @@ export const store = new Vuex.Store({
             commit("setRefreshToken", accountInfo.refreshToken);
             commit("setAccountInfo", accountInfo.account);
             commit("setIsLogin", accountInfo.success);
-            //localStorage 存 jwtToken
-            localStorage.setItem("jwtToken", accountInfo.jwtToken);
-            //localStorage 存 refreshToken
-            localStorage.setItem("refreshToken", accountInfo.refreshToken);
-            //存User基本資訊
-            localStorage.setItem("account", JSON.stringify(accountInfo.account));
-            //存是否登入
-            localStorage.setItem("isLogin", accountInfo.success);
         },
         //重新整理後，從localStorage設定回vuex store
         resetAllState({ commit, state }) {
             commit("setJwtToken", localStorage.getItem("jwtToken"));
+            commit("setRefreshToken", localStorage.getItem("refreshToken"));
             commit("setAccountInfo", JSON.parse(localStorage.getItem("account")));
             commit("setIsLogin", localStorage.getItem("isLogin"));
         },
         //重新設定jwtToken
         updateJwtToken({ commit, state }, accessToken) {
             commit("setJwtToken", accessToken);
-            //localStorage 存 jwtToken
-            localStorage.setItem("jwtToken", accessToken);
         },
     },
     getters: {

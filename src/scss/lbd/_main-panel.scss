@@ -3,7 +3,7 @@
     background: rgba(203, 203, 210, 0.15);
     position: relative;
     float: right;
-    width: calc(100% - 260px);
+    width: calc(100% - $sidebar-width);
     min-height: 100%;
 
     .content {

@@ -23,7 +23,6 @@ Vue.component("DatePicker", DatePicker); //日期選擇器
 const i18n = new VueI18n({
     locale: "zhTW",
 });
-console.log("process.env.WEBSITE", process.env);
 
 Vue.use(VeeValidate, {
     events: "input|blur",
