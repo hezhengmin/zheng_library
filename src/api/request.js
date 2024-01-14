@@ -1,5 +1,6 @@
 import axios from "axios";
 import { store } from "../store";
+import router from "../router";
 
 const axiosApiInstance = axios.create({
     baseURL: "/api",
@@ -13,7 +14,21 @@ axiosApiInstance.interceptors.response.use(
             alert("未授權，回登入頁面");
 
             //localStorage.clear();
+            //router.push({ name: "Login" });
             //window.location = `${process.env.WEBSITE}`;
+
+            axios
+                .post("/api/Account/GetNewToken", {
+                    accessToken: store.getters.getJwtToken,
+                    refreshToken: store.getters.getRefreshToken,
+                })
+                .then((response) => {
+                    console.log("response", response);
+                    if (response.status === 200) {
+                        store.dispatch("updateJwtToken", response.data.accessToken);
+                    }
+                })
+                .finally(() => {});
         }
         return Promise.reject(error);
     }

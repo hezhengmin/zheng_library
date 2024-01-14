@@ -62,6 +62,12 @@ export const store = new Vuex.Store({
             commit("setAccountInfo", JSON.parse(localStorage.getItem("account")));
             commit("setIsLogin", localStorage.getItem("isLogin"));
         },
+        //重新設定jwtToken
+        updateJwtToken({ commit, state }, accessToken) {
+            commit("setJwtToken", accessToken);
+            //localStorage 存 jwtToken
+            localStorage.setItem("jwtToken", accessToken);
+        },
     },
     getters: {
         getJwtToken(state) {
@@ -73,6 +79,9 @@ export const store = new Vuex.Store({
         //帳號Id
         getUserId(state) {
             return state.accountInfo?.userId;
+        },
+        getRefreshToken(state) {
+            return state.refreshToken;
         },
     },
 });
