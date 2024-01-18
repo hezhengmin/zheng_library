@@ -57,7 +57,6 @@ function retryOriginalRequest(config) {
             ...config,
         })
             .then((response) => {
-                console.log("retryOriginalRequest", response);
                 resolve(response);
             })
             .catch((error) => {

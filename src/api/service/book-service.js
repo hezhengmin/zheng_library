@@ -1,7 +1,7 @@
 import request from "../request.js";
 
 export default class Book {
-    getList(data) {
+    getBookList(data) {
         return request({
             url: "/Book/List",
             method: "POST",

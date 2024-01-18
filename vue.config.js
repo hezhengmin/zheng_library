@@ -13,6 +13,7 @@ module.exports = defineConfig({
     lintOnSave: false,
     configureWebpack: {
         resolve: {
+            //設置別名
             alias: {
                 api: path.resolve("src/api/index.js"),
                 mixin: path.resolve("src/mixin/index.js"),
@@ -22,9 +23,9 @@ module.exports = defineConfig({
     devServer: {
         proxy: {
             "/api/": {
-                target: "https://localhost:44323/api/", //請求跨域的目標url
+                target: "https://localhost:44323/api/", //要代理的API地址
                 secure: false,
-                changeOrigin: true,
+                changeOrigin: true, //允許跨域
                 pathRewrite: { "^/api/": "" },
                 ws: true,
             },

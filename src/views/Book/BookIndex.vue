@@ -125,7 +125,7 @@ export default {
 
             this.isLoading = true;
             bookService
-                .getList(filter)
+                .getBookList(filter)
                 .then((response) => {
                     this.bookList = response.data.data;
                     //總頁數
