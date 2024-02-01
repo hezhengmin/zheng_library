@@ -11,11 +11,17 @@ axiosApiInstance.interceptors.response.use(
     (error) => {
         if (error.response.status === 401) {
             //重新取得accesstoken
-            return axios
-                .post("/api/Account/GetNewToken", {
+            return axios({
+                method: "POST",
+                url: "/api/Account/GetNewToken",
+                headers: {
+                    Authorization: `Bearer ${store.getters.getJwtToken}`,
+                },
+                data: {
                     accessToken: store.getters.getJwtToken,
                     refreshToken: store.getters.getRefreshToken,
-                })
+                },
+            })
                 .then((response) => {
                     if (response.status === 200) {
                         store.dispatch("updateJwtToken", response.data.accessToken);

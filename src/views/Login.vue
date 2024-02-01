@@ -65,15 +65,15 @@ export default {
                     validateCode: this.validateCode,
                     validateCodeHash: this.validateCodeHash,
                 })
-                .then((response) => {
-                    if (response.data.success) {
-                        alert("登入成功");
+                .then(({ data }) => {
+                    if (data.success) {
+                        alert(data.message);
                         //登入後，設定store
-                        this.$store.dispatch("fetchAccessAccountInfo", response.data);
+                        this.$store.dispatch("fetchAccessAccountInfo", data);
                         //登入後回主頁
                         this.$router.push("/Home/Index");
                     } else {
-                        alert(response.data.errors.join("、"));
+                        alert(data.errors.join("、"));
                     }
                 })
                 .catch((error) => {

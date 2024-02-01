@@ -44,48 +44,50 @@
                             :next-link-class="'page-link'"></paginate>
                     </div>
                 </div>
-                <table class="table table-bordered table-hover">
-                    <colgroup>
-                        <col style="width: 3em" />
-                        <col style="width: 18em" />
-                        <col style="width: 8em" />
-                        <col style="width: 3em" />
-                        <col style="width: 14em" />
-                        <col style="width: 7em" />
-                        <col style="width: 5em" />
-                    </colgroup>
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>書名</th>
-                            <th>ISBN</th>
-                            <th>數量</th>
-                            <th>出版單位</th>
-                            <th>出版日期</th>
-                            <th>功能</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="(item, index) in bookList" :key="item.id">
-                            <td>{{ index + 1 }}</td>
-                            <td>{{ item.title }}</td>
-                            <td>{{ item.isbn }}</td>
-                            <td>{{ item.numberOfCopies }}</td>
-                            <td>{{ item.publisher }}</td>
-                            <td>{{ item.publishDate | momentTW }}</td>
-                            <td>
-                                <router-link
-                                    :to="{
-                                        name: 'BookEdit',
-                                        params: { id: item.id },
-                                    }">
-                                    編輯
-                                </router-link>
-                                <a href="" @click.prevent="deleteBook(item.id)">刪除</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <colgroup>
+                            <col style="min-width: 5px" />
+                            <col style="min-width: 200px" />
+                            <col style="min-width: 145px" />
+                            <col style="min-width: 50px" />
+                            <col style="min-width: 220px" />
+                            <col style="min-width: 110px" />
+                            <col style="min-width: 90px" />
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>書名</th>
+                                <th>ISBN</th>
+                                <th>數量</th>
+                                <th>出版單位</th>
+                                <th>出版日期</th>
+                                <th>功能</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item, index) in bookList" :key="item.id">
+                                <td>{{ index + 1 }}</td>
+                                <td>{{ item.title }}</td>
+                                <td>{{ item.isbn }}</td>
+                                <td>{{ item.numberOfCopies }}</td>
+                                <td>{{ item.publisher }}</td>
+                                <td>{{ item.publishDate | momentTW }}</td>
+                                <td>
+                                    <router-link
+                                        :to="{
+                                            name: 'BookEdit',
+                                            params: { id: item.id },
+                                        }">
+                                        編輯
+                                    </router-link>
+                                    <a href="" @click.prevent="deleteBook(item.id)">刪除</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
