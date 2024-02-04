@@ -22,6 +22,8 @@ export const store = new Vuex.Store({
         accountInfo: {},
         //登入是否成功
         isLogin: false,
+        //載入中
+        isLoading: false,
     },
     //由Mutations去更改State
     mutations: {
@@ -67,6 +69,10 @@ export const store = new Vuex.Store({
         updateJwtToken({ commit, state }, accessToken) {
             commit("setJwtToken", accessToken);
         },
+        //是否載入
+        updateIsLoading({ commit, state }, isLoading) {
+            state.isLoading = isLoading;
+        },
     },
     getters: {
         getJwtToken(state) {
@@ -81,6 +87,9 @@ export const store = new Vuex.Store({
         },
         getRefreshToken(state) {
             return state.refreshToken;
+        },
+        getIsLoading(state) {
+            return state.isLoading;
         },
     },
 });

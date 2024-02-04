@@ -24,8 +24,8 @@ export const apiGetAccountSelectList = () => createAxios().get("/Account/SelectL
 
 //書籍Book
 //export const apiPostBookList = (data) => createAxios().post("/Book/List", data);
-export const apiGetBook = (url) => createAxios().get(url);
-export const apiDeleteBook = (url) => createAxios().delete(url);
+//export const apiGetBook = (url) => createAxios().get(url);
+//export const apiDeleteBook = (url) => createAxios().delete(url);
 export const apiPostBookExportExcel = (config) => createAxios().request(config);
 export const apiPutBook = (url, data, config) => createAxios().put(url, data, config);
 export const apiPostBook = (url, data, config) => createAxios().post(url, data, config);

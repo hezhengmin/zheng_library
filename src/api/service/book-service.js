@@ -8,4 +8,17 @@ export default class Book {
             data: data,
         });
     }
+    getBook(id) {
+        return request({
+            url: `/Book/${id}`,
+            method: "GET",
+        });
+    }
+
+    deleteBook(id) {
+        return request({
+            url: `/Book/${id}`,
+            method: "DELETE",
+        });
+    }
 }

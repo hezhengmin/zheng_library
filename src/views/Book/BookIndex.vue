@@ -1,7 +1,5 @@
 ﻿<template>
     <div class="bookIndex">
-        <loading loader="spinner" :active.sync="isLoading" :can-cancel="true" :is-full-page="false"></loading>
-
         <div class="card">
             <div class="card-header">
                 <h2 class="card-title">書籍列表</h2>
@@ -94,9 +92,7 @@
 </template>
 <script>
 import mixin from "mixin";
-import { apiDeleteBook, apiPostBookExportExcel } from "api";
-import Loading from "vue-loading-overlay";
-import "vue-loading-overlay/dist/vue-loading.css";
+import { apiPostBookExportExcel } from "api";
 import BookService from "../../api/service/book-service";
 
 let bookService = null;
@@ -111,11 +107,10 @@ export default {
             isLoading: false, //載入
         };
     },
-    components: {
-        Loading,
-    },
+    components: {},
     methods: {
         getBookList() {
+            this.$store.dispatch("updateIsLoading", true);
             let filter = {
                 title: this.title,
                 isbn: this.isbn,
@@ -125,7 +120,6 @@ export default {
                 },
             };
 
-            this.isLoading = true;
             bookService
                 .getBookList(filter)
                 .then((response) => {
@@ -140,18 +134,18 @@ export default {
                 })
                 .finally(() => {
                     //資料Loading載入結束
-                    this.isLoading = false;
+                    this.$store.dispatch("updateIsLoading", false);
                 });
         },
         deleteBook(id) {
             if (!confirm("確定要刪除?")) return;
-            apiDeleteBook(`/Book/${id}`)
-                .then((response) => {
-                    if (response.status === 204) {
-                        alert("刪除成功");
+
+            bookService
+                .deleteBook(id)
+                .then(({ data }) => {
+                    if (data.success) {
+                        alert(data.message);
                         this.getBookList();
-                    } else {
-                        alert("刪除失敗");
                     }
                 })
                 .catch((error) => {
