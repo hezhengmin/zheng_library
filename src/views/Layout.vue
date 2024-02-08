@@ -10,12 +10,6 @@
             <Navigation />
             <!-- 導覽頁 end -->
             <div class="content">
-                <loading
-                    background-color="#fff"
-                    loader="spinner"
-                    :active.sync="isLoading"
-                    :can-cancel="true"
-                    :is-full-page="true" />
                 <router-view></router-view>
             </div>
         </div>
@@ -24,14 +18,11 @@
 <script>
 import Navigation from "../../src/components/Navigation.vue";
 import Sidebar from "../../src/components/Sidebar.vue";
-import Loading from "vue-loading-overlay";
-import "vue-loading-overlay/dist/vue-loading.css";
 export default {
     name: "Layout",
     components: {
         Navigation,
         Sidebar,
-        Loading,
     },
     computed: {
         isLoading() {

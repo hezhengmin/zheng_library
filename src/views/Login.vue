@@ -71,7 +71,7 @@ export default {
                         //登入後，設定store
                         this.$store.dispatch("fetchAccessAccountInfo", data);
                         //登入後回主頁
-                        this.$router.push({ naem: "Login" });
+                        this.$router.push({ name: "Login" });
                     } else {
                         alert(data.errors.join("、"));
                     }

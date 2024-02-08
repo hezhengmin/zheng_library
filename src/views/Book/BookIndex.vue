@@ -26,6 +26,9 @@
         <!--資料列-->
         <div class="card mt-3">
             <div class="card-body">
+                <v-overlay :absolute="absolute" :value="isLoading">
+                    <v-progress-circular indeterminate size="64"></v-progress-circular>
+                </v-overlay>
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="p-2">第 {{ pageNumber }} 頁，總共 {{ totalRecords }} 筆</div>
                     <div class="p-2">
@@ -101,11 +104,16 @@ export default {
     mixins: [mixin],
     data() {
         return {
+            absolute: true,
             title: "",
             isbn: "",
             bookList: [],
-            isLoading: false, //載入
         };
+    },
+    computed: {
+        isLoading() {
+            return this.$store.getters.getIsLoading;
+        },
     },
     components: {},
     methods: {
