@@ -112,13 +112,13 @@ export default {
     },
     computed: {
         isLoading() {
-            return this.$store.getters.getIsLoading;
+            return this.$store.getters["accountModules/getIsLoading"];
         },
     },
     components: {},
     methods: {
         getBookList() {
-            this.$store.dispatch("updateIsLoading", true);
+            this.$store.dispatch("accountModules/updateIsLoading", true);
             let filter = {
                 title: this.title,
                 isbn: this.isbn,
@@ -142,7 +142,7 @@ export default {
                 })
                 .finally(() => {
                     //資料Loading載入結束
-                    this.$store.dispatch("updateIsLoading", false);
+                    this.$store.dispatch("accountModules/updateIsLoading", false);
                 });
         },
         deleteBook(id) {

@@ -38,13 +38,13 @@ export default {
     computed: {
         //帳號的主key
         primaryKeyId() {
-            return this.$store.state.accountInfo.id;
+            return this.$store.state.accountModules.accountInfo.id;
         },
         hasAccountInfo() {
-            return this.$store.state.accountInfo !== null;
+            return this.$store.state.accountModules.accountInfo !== null;
         },
         hasIsLogin() {
-            return this.$store.state.isLogin;
+            return this.$store.state.accountModules.isLogin;
         },
     },
     methods: {

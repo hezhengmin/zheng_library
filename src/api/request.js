@@ -15,16 +15,16 @@ axiosApiInstance.interceptors.response.use(
                 method: "POST",
                 url: "/api/Account/GetNewToken",
                 headers: {
-                    Authorization: `Bearer ${store.getters.getJwtToken}`,
+                    Authorization: `Bearer ${store.getters["accountModules/getJwtToken"]}`,
                 },
                 data: {
-                    accessToken: store.getters.getJwtToken,
-                    refreshToken: store.getters.getRefreshToken,
+                    accessToken: store.getters["accountModules/getJwtToken"],
+                    refreshToken: store.getters["accountModules/getRefreshToken"],
                 },
             })
                 .then((response) => {
                     if (response.status === 200) {
-                        store.dispatch("updateJwtToken", response.data.accessToken);
+                        store.dispatch("accountModules/updateJwtToken", response.data.accessToken);
                         return retryOriginalRequest(error.config);
                     }
                 })
@@ -45,7 +45,7 @@ axiosApiInstance.interceptors.response.use(
 
 axiosApiInstance.interceptors.request.use(
     (config) => {
-        const jwtToken = store.getters.getJwtToken;
+        const jwtToken = store.getters["accountModules/getJwtToken"];
         if (jwtToken) {
             config.headers.Authorization = `Bearer ${jwtToken}`;
         }

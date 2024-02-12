@@ -1,13 +1,13 @@
 ﻿<template>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+    <nav class="navbar navbar-expand-lg" color-on-scroll="500">
         <div class="container-fluid">
             <div class="collapse navbar-collapse justify-content-end">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <!-- 登入帳號Id -->
                         <a class="nav-link" href="">
-                            <span class="no-icon">{{UserId}}</span>
+                            <span class="no-icon">{{ UserId }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
@@ -22,21 +22,20 @@
 </template>
 
 <script>
-    export default {
-        name: 'Navigation',
-        computed: {
-            UserId() {
-                return this.$store.getters.getUserId;
-            }
+export default {
+    name: "Navigation",
+    computed: {
+        UserId() {
+            return this.$store.getters["accountModules/getUserId"];
         },
-        methods: {
-            signOut() {
-                localStorage.clear();
-                this.$router.push("/");
-            }
-        }
-    }
+    },
+    methods: {
+        signOut() {
+            localStorage.clear();
+            this.$router.push("/");
+        },
+    },
+};
 </script>
 
-<style>
-</style>
+<style></style>

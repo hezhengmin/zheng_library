@@ -69,9 +69,9 @@ export default {
                     if (data.success) {
                         alert(data.message);
                         //登入後，設定store
-                        this.$store.dispatch("fetchAccessAccountInfo", data);
+                        this.$store.dispatch("accountModules/fetchAccessAccountInfo", data);
                         //登入後回主頁
-                        this.$router.push({ name: "Login" });
+                        this.$router.push({ name: "Index" });
                     } else {
                         alert(data.errors.join("、"));
                     }

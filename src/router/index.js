@@ -101,8 +101,8 @@ router.beforeEach((to, from, next) => {
     //頁面是否要驗證
     const authRequired = !publicPages.includes(to.path);
     //登入是不是成功
-    const loggedIn = store.getters.getIsLogin;
-
+    const loggedIn = store.getters["accountModules/getIsLogin"];
+    console.log(`loggedIn`, loggedIn);
     if (authRequired && !loggedIn) {
         next("/");
     } else {

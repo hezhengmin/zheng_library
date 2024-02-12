@@ -24,11 +24,6 @@ export default {
         Navigation,
         Sidebar,
     },
-    computed: {
-        isLoading() {
-            return this.$store.getters.getIsLoading;
-        },
-    },
 };
 </script>
 

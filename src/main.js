@@ -37,7 +37,7 @@ Vue.use(VeeValidate, {
 });
 
 //重新整理後，從localStorage設定回vuex store
-store.dispatch("resetAllState");
+store.dispatch("accountModules/resetAllState");
 
 new Vue({
     router,
